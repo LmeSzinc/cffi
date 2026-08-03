@@ -2,8 +2,16 @@
 What's New
 ======================
 
+v2.1.1
+======
+
+* Minimize internal Python API usage for interpreter and thread state sampling where possible.
+  Avoids breaking ABI change in Python >= 3.15.0b4. (`#269`_)
+
+.. _`#269`: https://github.com/python-cffi/cffi/pull/269
+
 v2.1.0
-===========
+======
 
 * Added the ``cffi-gen-src`` command-line tool (also invocable as
   ``python -m cffi.gen_src``), which generates CFFI C extension
