@@ -78,6 +78,11 @@ def get_config():
     return config
 
 def ask_supports_thread():
+    if sys.platform == 'win32':
+        # '__thread' is not used on Windows; skip the compiler probe so
+        # that builds without MSVC (e.g. MinGW) do not need a compiler
+        # probe here.
+        return
     config = get_config()
     ok = (sys.platform != 'win32' and
           config.try_compile('__thread int some_threadlocal_variable_42;'))
@@ -108,7 +113,12 @@ def _safe_to_ignore():
 
 def uses_msvc():
     config = get_config()
-    return config.try_compile('#ifndef _MSC_VER\n#error "not MSVC"\n#endif')
+    try:
+        return config.try_compile('#ifndef _MSC_VER\n#error "not MSVC"\n#endif')
+    except Exception:
+        # No usable compiler found through distutils (e.g. Windows without
+        # MSVC installed); fall back to the pkg-config based detection.
+        return False
 
 def use_pkg_config():
     if sys.platform == 'darwin' and os.path.exists('/usr/local/bin/brew'):

@@ -1,6 +1,10 @@
 static PyObject *_current_interp_key(void)
 {
+#if PY_VERSION_HEX >= 0x03090000
     PyInterpreterState *interp = PyInterpreterState_Get();
+#else
+    PyInterpreterState *interp = PyThreadState_GET()->interp;
+#endif
     return PyInterpreterState_GetDict(interp);   /* shared reference */
 }
 
@@ -27,7 +31,11 @@ static PyObject *_get_interpstate_dict(void)
         return NULL;
     }
 
+#if PY_VERSION_HEX >= 0x03090000
     interp = PyThreadState_GetInterpreter(tstate);
+#else
+    interp = tstate->interp;
+#endif
     interpdict = PyInterpreterState_GetDict(interp);   /* shared reference */
     if (interpdict == NULL) {
         /* subinterpreter was cleared already, or is being cleared right now,
