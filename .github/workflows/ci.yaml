@@ -72,6 +72,8 @@ jobs:
         matrix_yaml: |
           include:
           # x86_64 manylinux
+          - { spec: cp38-manylinux_x86_64, arch: x86_64, omit: ${{ env.skip_ci_redundant_jobs }}, cibw_version: 'cibuildwheel<4', manylinux_img: 'manylinux2014:2026.05.02-2' }
+          - { spec: cp39-manylinux_x86_64, arch: x86_64, omit: ${{ env.skip_ci_redundant_jobs }} }
           - { spec: cp310-manylinux_x86_64, arch: x86_64, omit: ${{ env.skip_ci_redundant_jobs }} }
           - { spec: cp311-manylinux_x86_64, arch: x86_64, omit: ${{ env.skip_ci_redundant_jobs }} }
           - { spec: cp312-manylinux_x86_64, arch: x86_64, omit: ${{ env.skip_ci_redundant_jobs }} }
@@ -82,6 +84,8 @@ jobs:
           - { spec: cp315t-manylinux_x86_64, arch: x86_64 }
 
           # x86_64 musllinux
+          - { spec: cp38-musllinux_x86_64, arch: x86_64, omit: ${{ env.skip_ci_redundant_jobs }}, cibw_version: 'cibuildwheel<4', musllinux_img: 'musllinux_1_2:2026.05.02-2' }
+          - { spec: cp39-musllinux_x86_64, arch: x86_64, omit: ${{ env.skip_ci_redundant_jobs }} }
           - { spec: cp310-musllinux_x86_64, arch: x86_64, omit: ${{ env.skip_ci_redundant_jobs }} }
           - { spec: cp311-musllinux_x86_64, arch: x86_64, omit: ${{ env.skip_ci_redundant_jobs }} }
           - { spec: cp312-musllinux_x86_64, arch: x86_64, omit: ${{ env.skip_ci_redundant_jobs }} }
@@ -92,6 +96,8 @@ jobs:
           - { spec: cp315t-musllinux_x86_64, arch: x86_64 }
 
           # i686 manylinux
+          - { spec: cp38-manylinux_i686, arch: i686, omit: ${{ env.skip_ci_redundant_jobs }}, cibw_version: 'cibuildwheel<4', manylinux_img: 'manylinux2014:2026.05.02-2' }
+          - { spec: cp39-manylinux_i686, arch: i686, omit: ${{ env.skip_ci_redundant_jobs }} }
           - { spec: cp310-manylinux_i686, arch: i686, omit: ${{ env.skip_ci_redundant_jobs }} }
           - { spec: cp311-manylinux_i686, arch: i686, omit: ${{ env.skip_ci_redundant_jobs }} }
           - { spec: cp312-manylinux_i686, arch: i686, omit: ${{ env.skip_ci_redundant_jobs }} }
@@ -99,11 +105,15 @@ jobs:
           # omit i686 releases > 3.13
 
           # i686 musllinux
+          - { spec: cp38-musllinux_i686, arch: i686, omit: ${{ env.skip_ci_redundant_jobs }}, cibw_version: 'cibuildwheel<4', musllinux_img: 'musllinux_1_2:2026.05.02-2' }
+          - { spec: cp39-musllinux_i686, arch: i686, omit: ${{ env.skip_ci_redundant_jobs }} }
           - { spec: cp310-musllinux_i686, arch: i686, omit: ${{ env.skip_ci_redundant_jobs }} }
           - { spec: cp311-musllinux_i686, arch: i686 }
           # omit i686 releases after 3.11
 
           # aarch64 manylinux
+          - { spec: cp38-manylinux_aarch64, arch: aarch64, omit: ${{ env.skip_ci_redundant_jobs }}, cibw_version: 'cibuildwheel<4', manylinux_img: 'manylinux2014:2026.05.02-2' }
+          - { spec: cp39-manylinux_aarch64, arch: aarch64, omit: ${{ env.skip_ci_redundant_jobs }} }
           - { spec: cp310-manylinux_aarch64, arch: aarch64, omit: ${{ env.skip_ci_redundant_jobs }} }
           - { spec: cp311-manylinux_aarch64, arch: aarch64, omit: ${{ env.skip_ci_redundant_jobs }} }
           - { spec: cp312-manylinux_aarch64, arch: aarch64, omit: ${{ env.skip_ci_redundant_jobs }} }
@@ -114,6 +124,8 @@ jobs:
           - { spec: cp315t-manylinux_aarch64, arch: aarch64 }
 
           # aarch64 musllinux
+          - { spec: cp38-musllinux_aarch64, arch: aarch64, omit: ${{ env.skip_ci_redundant_jobs }}, cibw_version: 'cibuildwheel<4', musllinux_img: 'musllinux_1_2:2026.05.02-2' }
+          - { spec: cp39-musllinux_aarch64, arch: aarch64, omit: ${{ env.skip_ci_redundant_jobs }} }
           - { spec: cp310-musllinux_aarch64, arch: aarch64, omit: ${{ env.skip_ci_redundant_jobs }} }
           - { spec: cp311-musllinux_aarch64, arch: aarch64, omit: ${{ env.skip_ci_redundant_jobs }} }
           - { spec: cp312-musllinux_aarch64, arch: aarch64, omit: ${{ env.skip_ci_redundant_jobs }} }
@@ -124,6 +136,8 @@ jobs:
           - { spec: cp315t-musllinux_aarch64, arch: aarch64 }
 
           # ppc64le manylinux
+          - { spec: cp38-manylinux_ppc64le, arch: ppc64le, test_args: '{package}/src/c', omit: ${{ env.skip_slow_jobs }}, cibw_version: 'cibuildwheel<4', manylinux_img: 'manylinux2014:2026.05.02-2' }
+          - { spec: cp39-manylinux_ppc64le, arch: ppc64le, test_args: '{package}/src/c', omit: ${{ env.skip_slow_jobs }} }
           - { spec: cp310-manylinux_ppc64le, arch: ppc64le, test_args: '{package}/src/c', omit: ${{ env.skip_slow_jobs }} }
           - { spec: cp311-manylinux_ppc64le, arch: ppc64le, test_args: '{package}/src/c', omit: ${{ env.skip_slow_jobs || env.skip_ci_redundant_jobs }} }
           - { spec: cp312-manylinux_ppc64le, arch: ppc64le, test_args: '{package}/src/c', omit: ${{ env.skip_slow_jobs || env.skip_ci_redundant_jobs }} }
@@ -134,6 +148,8 @@ jobs:
           - { spec: cp315t-manylinux_ppc64le, arch: ppc64le, test_args: '{package}/src/c', omit: ${{ env.skip_slow_jobs }} }
 
           # s390x manylinux
+          - { spec: cp38-manylinux_s390x, arch: s390x, test_args: '{package}/src/c', omit: ${{ env.skip_slow_jobs }}, cibw_version: 'cibuildwheel<4', manylinux_img: 'manylinux2014:2026.05.02-2' }
+          - { spec: cp39-manylinux_s390x, arch: s390x, test_args: '{package}/src/c', omit: ${{ env.skip_slow_jobs }} }
           - { spec: cp310-manylinux_s390x, arch: s390x, test_args: '{package}/src/c', omit: ${{ env.skip_slow_jobs }} }
           - { spec: cp311-manylinux_s390x, arch: s390x, test_args: '{package}/src/c', omit: ${{ env.skip_slow_jobs || env.skip_ci_redundant_jobs }} }
           - { spec: cp312-manylinux_s390x, arch: s390x, test_args: '{package}/src/c', omit: ${{ env.skip_slow_jobs || env.skip_ci_redundant_jobs }} }
@@ -187,7 +203,7 @@ jobs:
         CIBW_MUSLLINUX_X86_64_IMAGE: ${{ matrix.musllinux_img || 'musllinux_1_2' }}
         CIBW_MUSLLINUX_I686_IMAGE: ${{ matrix.musllinux_img || 'musllinux_1_2' }}
         CIBW_MUSLLINUX_AARCH64_IMAGE: ${{ matrix.musllinux_img || 'musllinux_1_2' }}
-        CIBW_TEST_REQUIRES: pytest setuptools meson-python ninja # 3.12+ no longer includes distutils, just always ensure setuptools is present
+        CIBW_TEST_REQUIRES: pytest setuptools "meson-python; python_version >= '3.9'" ninja # 3.12+ no longer includes distutils, just always ensure setuptools is present
         CIBW_TEST_COMMAND: PYTHONUNBUFFERED=1 python -m pytest ${{ matrix.test_args || '{project}' }}  # default to test all
       run: |
         set -eux
@@ -223,6 +239,8 @@ jobs:
         matrix_yaml: |
           include:
           # x86_64 macos
+          - { spec: cp38-macosx_x86_64, deployment_target: '10.15', runs_on: macos-15-intel, omit: ${{ env.skip_ci_redundant_jobs }}, cibw_version: 'cibuildwheel<4' }
+          - { spec: cp39-macosx_x86_64, deployment_target: '10.15', runs_on: macos-15-intel, omit: ${{ env.skip_ci_redundant_jobs }} }
           - { spec: cp310-macosx_x86_64, deployment_target: '10.15', runs_on: macos-15-intel, omit: ${{ env.skip_ci_redundant_jobs }} }
           - { spec: cp311-macosx_x86_64, deployment_target: '10.15', runs_on: macos-15-intel, omit: ${{ env.skip_ci_redundant_jobs }} }
           - { spec: cp312-macosx_x86_64, deployment_target: '10.15', runs_on: macos-15-intel, omit: ${{ env.skip_ci_redundant_jobs }} }
@@ -233,6 +251,8 @@ jobs:
           - { spec: cp315t-macosx_x86_64, deployment_target: '10.15', runs_on: macos-15-intel }
 
           # arm64 macos
+          - { spec: cp38-macosx_arm64, deployment_target: '11.0', omit: ${{ env.skip_ci_redundant_jobs }}, cibw_version: 'cibuildwheel<4' }
+          - { spec: cp39-macosx_arm64, deployment_target: '11.0', omit: ${{ env.skip_ci_redundant_jobs }} }
           - { spec: cp310-macosx_arm64, deployment_target: '11.0', omit: ${{ env.skip_ci_redundant_jobs }} }
           - { spec: cp311-macosx_arm64, deployment_target: '11.0', omit: ${{ env.skip_ci_redundant_jobs }} }
           - { spec: cp312-macosx_arm64, deployment_target: '11.0', omit: ${{ env.skip_ci_redundant_jobs }} }
@@ -275,7 +295,7 @@ jobs:
       env:
         CIBW_BUILD: ${{ matrix.spec }}
         CIBW_ENABLE: cpython-prerelease
-        CIBW_TEST_REQUIRES: pytest setuptools meson-python ninja
+        CIBW_TEST_REQUIRES: pytest setuptools "meson-python; python_version >= '3.9'" ninja
         CIBW_TEST_COMMAND: pip install pip --upgrade; cd {project}; PYTHONUNBUFFERED=1 pytest
         MACOSX_DEPLOYMENT_TARGET: ${{ matrix.deployment_target || '11.0' }}
         SDKROOT: ${{ matrix.sdkroot || 'macosx' }}
@@ -311,6 +331,8 @@ jobs:
         matrix_yaml: |
           include:
           # x86_64 windows
+          - { spec: cp38-win_amd64, omit: ${{ env.skip_ci_redundant_jobs }}, cibw_version: 'cibuildwheel<4' }
+          - { spec: cp39-win_amd64, omit: ${{ env.skip_ci_redundant_jobs }} }
           - { spec: cp310-win_amd64, omit: ${{ env.skip_ci_redundant_jobs }} }
           - { spec: cp311-win_amd64, omit: ${{ env.skip_ci_redundant_jobs }} }
           - { spec: cp312-win_amd64, omit: ${{ env.skip_ci_redundant_jobs }} }
@@ -321,6 +343,8 @@ jobs:
           - { spec: cp315t-win_amd64 }
           
           # x86 windows
+          - { spec: cp38-win32, omit: ${{ env.skip_ci_redundant_jobs }}, cibw_version: 'cibuildwheel<4' }
+          - { spec: cp39-win32, omit: ${{ env.skip_ci_redundant_jobs }} }
           - { spec: cp310-win32, omit: ${{ env.skip_ci_redundant_jobs }} }
           - { spec: cp311-win32, omit: ${{ env.skip_ci_redundant_jobs }} }
           - { spec: cp312-win32, omit: ${{ env.skip_ci_redundant_jobs }} }
@@ -363,7 +387,7 @@ jobs:
       env:
         CIBW_BUILD: ${{ matrix.spec }}
         CIBW_ENABLE: cpython-prerelease
-        CIBW_TEST_REQUIRES: pytest setuptools meson-python ninja
+        CIBW_TEST_REQUIRES: pytest setuptools "meson-python; python_version >= '3.9'" ninja
         CIBW_TEST_COMMAND: ${{ matrix.test_cmd || 'python -m pytest {package}/src/c' }}
         # FIXME: /testing takes ~45min on Windows and has some failures...
         # CIBW_TEST_COMMAND='python -m pytest {package}/src/c {package}/testing'
