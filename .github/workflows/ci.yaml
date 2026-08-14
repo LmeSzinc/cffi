@@ -20,8 +20,8 @@ on:
         default: true
 
 env:
-  skip_ci_redundant_jobs: ${{ (github.event_name == 'workflow_dispatch' && inputs.skip_ci_redundant_jobs) || (github.event_name == 'pull_request' || github.event_name == 'push') }}
-  skip_slow_jobs: ${{ (github.event_name == 'workflow_dispatch' && inputs.skip_slow_jobs) || (github.event_name == 'pull_request' || github.event_name == 'push') }}
+  skip_ci_redundant_jobs: ${{ github.event_name == 'workflow_dispatch' && inputs.skip_ci_redundant_jobs }}
+  skip_slow_jobs: ${{ github.event_name == 'workflow_dispatch' && inputs.skip_slow_jobs }}
   skip_artifact_upload: ${{ github.event_name == 'workflow_dispatch' && inputs.skip_artifact_upload }}
 
 jobs:
